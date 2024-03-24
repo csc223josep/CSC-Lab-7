@@ -1,27 +1,35 @@
 import java.util.NoSuchElementException;
 
+/**
+ * A class representing a singly linked list with methods to add, remove, and sort elements.
+ *
+ * @author Joseph Kabesha
+ * @author Isaiah Ayres
+ */
 public class SinglyLinkedList {
+    // Reference to the head of the list
     private Node head;
 
-    // Node class
+    // A nested class to define the Node structure
     private static class Node {
         int data;
         Node next;
 
+        // Constructor to create a new Node with the given data
         Node(int data) {
             this.data = data;
             this.next = null;
         }
     }
 
-    // Method to add element to the beginning of the list
+    // Method to add an element to the beginning of the list
     public void addFirst(int data) {
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
     }
 
-    // Method to add element to the end of the list
+    // Method to add an element to the end of the list
     public void addLast(int data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -35,7 +43,7 @@ public class SinglyLinkedList {
         current.next = newNode;
     }
 
-    // Method to remove element from the beginning of the list
+    // Method to remove an element from the beginning of the list
     public void removeFirst() {
         if (head == null) {
             throw new NoSuchElementException("List is empty");
@@ -43,7 +51,7 @@ public class SinglyLinkedList {
         head = head.next;
     }
 
-    // Method to remove element from the end of the list
+    // Method to remove an element from the end of the list
     public void removeLast() {
         if (head == null) {
             throw new NoSuchElementException("List is empty");
@@ -75,8 +83,11 @@ public class SinglyLinkedList {
         Node index = null;
         int temp;
 
+        // Traverse the list and compare adjacent elements
         while (current != null) {
             index = current.next;
+
+            // Compare adjacent elements and swap them if needed
             while (index != null) {
                 if (current.data > index.data) {
                     temp = current.data;
@@ -89,32 +100,30 @@ public class SinglyLinkedList {
         }
     }
 
+    // Main method to demonstrate the functionality of the SinglyLinkedList class
     public static void main(String[] args) {
         SinglyLinkedList list = new SinglyLinkedList();
-        list.addFirst(3);
-        list.addFirst(1);   
-        list.addLast(5);
-        list.addLast(2);
-        list.addLast(4);
-
-        System.out.println("Original list:");
-        list.displayList();
-
-        list.bubbleSort();
-
-        System.out.println("Sorted list:");
-        list.displayList();
-
-        System.out.println("Cleared list:");
+        System.out.println("attempt to remove from a empty list");
         try {
-            list.removeFirst();
-            list.removeFirst();
-            list.removeFirst();
-            list.removeFirst();
-            list.removeFirst();
             list.removeFirst();
         } catch (NoSuchElementException e) {
             System.out.println("Caught Exception: " + e.getMessage());
         }
+        list.addFirst(3);
+        list.addFirst(1);
+        list.addLast(5);
+        list.addLast(2);
+        list.addLast(4);
+
+        // Display the original list
+        System.out.println("Original list:");
+        list.displayList();
+
+        // Sort the list
+        list.bubbleSort();
+
+        // Display the sorted list
+        System.out.println("Sorted list:");
+        list.displayList();
     }
 }

@@ -1,13 +1,23 @@
+/**
+ * This class implements a circular singly linked list where the last node points back to the head.
+ * It provides basic operations such as add, remove, display, and search within the list.
+ * 
+ * @author Joseph Kabesha 
+ * @author Isaiah Ayres
+ 
+ */
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class CircularList {
     private Node head;
 
-    // Node class
+    /**
+     * The Node class represents a single node in the circular list.
+     */
     private static class Node {
-        int data;
-        Node next;
+        int data; // Data stored in the node
+        Node next; // Reference to the next node in the list
 
         Node(int data) {
             this.data = data;
@@ -15,7 +25,10 @@ public class CircularList {
         }
     }
 
-    // Method to add element to the list
+    /**
+     * Adds a new element to the circular list.
+     * @param data The data to be added to the list.
+     */
     public void add(int data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -31,7 +44,11 @@ public class CircularList {
         }
     }
 
-    // Method to remove element from the list
+    /**
+     * Removes an element from the circular list.
+     * @param data The data to be removed from the list.
+     * @throws NoSuchElementException if the list is empty or element is not found.
+     */
     public void remove(int data) {
         if (head == null) {
             throw new NoSuchElementException("List is empty");
@@ -62,7 +79,9 @@ public class CircularList {
         throw new NoSuchElementException("Element not found");
     }
 
-    // Method to display the list
+    /**
+     * Displays all elements in the circular list.
+     */
     public void displayList() {
         if (head == null) {
             System.out.println("List is empty");
@@ -101,14 +120,25 @@ public class CircularList {
         list.add(5);
         list.add(2);
         list.add(4);
+        list.add(6);
+        list.add(9);
+        list.add(10);
+        list.add(7);
+        list.add(8);
+        list.add(11);
 
         System.out.println("Original list:");
         list.displayList();
+        list.remove(3);
+        list.displayList();
+        System.out.println("Item found: " + list.search(3));
+
 
         // Ask user for item to search
         System.out.print("Enter item to search: ");
         int itemToSearch = scanner.nextInt();
 
+    
         // Search for the item
         System.out.println("Item " + itemToSearch + " found: " + list.search(itemToSearch));
 
